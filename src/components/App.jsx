@@ -1,17 +1,18 @@
 import HomePage from 'pages/HomePage';
 import MoviesPage from 'pages/MoviesPage';
 import { Route, Link, Routes } from 'react-router-dom';
+
 export default function App() {
   return (
     <>
       <nav>
         <ul>
-          <Link to="/">
-            <li>Home</li>
-          </Link>
-          <Link>
-            <li to="/movies">Movies</li>
-          </Link>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/movies">Movies</Link>
+          </li>
         </ul>
       </nav>
 
