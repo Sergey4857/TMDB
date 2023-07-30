@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import MovieItem from 'components/App/MovieItem';
+import MovieItem from 'components/MovieItem';
 
 const HomePage = () => {
   const [results, setResults] = useState([]);
