@@ -14,11 +14,11 @@ const HomePage = () => {
           `https://api.themoviedb.org/3/trending/all/day?api_key=${key}`
         );
         setResults(response.data.results);
-        console.log(response.data.results);
       } catch (error) {
         console.log(error);
       }
     };
+
     Fetch();
   }, []);
 
