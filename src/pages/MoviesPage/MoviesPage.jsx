@@ -1,19 +1,21 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import defaultImage from '../../defaultImage.jpg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './MoviesPage.module.css';
-
+import FetchByQuery from 'Api/FetchByQuery';
+import MoviesList from 'components/MovieList/MoviesList';
+import MoviesItemHome from 'components/MoviesItemHome/MoviesItemHome';
+import Spinner from 'Spinner/Spinner';
 const MoviesPage = () => {
   const [input, setInput] = useState('');
-  const [results, setResults] = useState('');
+  const [results, setResults] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const location = useLocation();
 
-  const IMG_URL = 'https://image.tmdb.org/t/p/';
   function onHandleChange(e) {
     setInput(e.currentTarget.value);
   }
@@ -27,32 +29,13 @@ const MoviesPage = () => {
   }
 
   useEffect(() => {
-    const Fetch = async () => {
-      try {
-        const query = searchParams.get('query');
-
-        const key = 'daba956501188a86dba8a49778238f6d';
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?query=${
-            query ? query : ''
-          }&api_key=${key}`
-        );
-        if (query && response.data.results.length === 0) {
-          return toast.success(
-            `Movies with this title "${query}" not found, please enter another movie`
-          );
-        }
-        setResults(response.data.results);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    Fetch();
+    FetchByQuery(searchParams, setResults, setIsLoading, setError);
   }, [searchParams]);
 
   return (
     <>
+      {isLoading && <Spinner />}
+      {error && <p>Oops..Somesing went wrong...</p>}
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -75,23 +58,9 @@ const MoviesPage = () => {
           Search
         </button>
       </form>
-      <ul className={css.list}>
-        {results &&
-          results.map(({ id, original_title, poster_path }) => (
-            <Link key={id} to={`${id}`} state={{ from: location }}>
-              <li className={css.item}>
-                <img
-                  className={css.picture}
-                  src={
-                    poster_path ? `${IMG_URL}w342${poster_path}` : defaultImage
-                  }
-                  alt="#"
-                ></img>
-                <p className={css.text}>{original_title}</p>
-              </li>
-            </Link>
-          ))}
-      </ul>
+      <MoviesList>
+        <MoviesItemHome results={results} location={location} />
+      </MoviesList>
     </>
   );
 };

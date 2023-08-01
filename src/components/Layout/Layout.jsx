@@ -2,6 +2,8 @@ import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import css from './Layout.module.css';
 import logo from '../../logo.svg';
+import Spinner from 'Spinner/Spinner';
+
 const Layout = () => {
   return (
     <>
@@ -25,7 +27,7 @@ const Layout = () => {
         </nav>
       </header>
       <main className={css.main}>
-        <Suspense fallback={<div>is loading...</div>}>
+        <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </main>
