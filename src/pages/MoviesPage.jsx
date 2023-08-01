@@ -1,40 +1,43 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState('');
+  const [input, setInput] = useState('');
   const [results, setResults] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
-  console.log(location);
-
   const IMG_URL = 'https://image.tmdb.org/t/p/';
   function onHandleChange(e) {
-    setQuery(e.currentTarget.value);
+    setInput(e.currentTarget.value);
   }
 
   function onSubmit(e) {
     e.preventDefault();
+    setSearchParams(input ? { query: input } : {});
+  }
+
+  useEffect(() => {
     const Fetch = async () => {
       try {
+        const query = searchParams.get('query');
         const key = 'daba956501188a86dba8a49778238f6d';
         const response = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${key}`
+          `https://api.themoviedb.org/3/search/movie?query=${
+            query ? query : ''
+          }&api_key=${key}`
         );
 
-        console.log(response.data.results);
         setResults(response.data.results);
       } catch (error) {
         console.log(error);
       }
     };
-    setSearchParams({ query: query });
 
     Fetch();
-  }
+  }, [searchParams]);
 
   return (
     <>

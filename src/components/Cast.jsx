@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 import { useParams } from 'react-router-dom';
 const Cast = () => {
   const IMG_URL = 'https://image.tmdb.org/t/p/';
@@ -27,7 +28,10 @@ const Cast = () => {
       <ul>
         {data.map(({ id, character, name, profile_path }) => (
           <li key={id}>
-            <img src={`${IMG_URL}w342${profile_path}`} alt="#"></img>
+            <img
+              src={profile_path && `${IMG_URL}w342${profile_path}`}
+              alt="#"
+            ></img>
             <p>{name}</p>
             <p>{character}</p>
           </li>

@@ -24,13 +24,16 @@ const Reviews = () => {
   return (
     <>
       <ul>
-        {data &&
+        {data.length > 0 ? (
           data.map(({ id, author, content }) => (
             <li key={id}>
               <h2>{author}</h2>
               <p>{content}</p>
             </li>
-          ))}
+          ))
+        ) : (
+          <p>We don`t have any reviews for this movie</p>
+        )}
       </ul>
     </>
   );

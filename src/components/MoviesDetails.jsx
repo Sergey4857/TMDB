@@ -1,13 +1,12 @@
+import { Suspense } from 'react';
 import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import Reviews from './Reviews';
+
 const MoviesDetails = () => {
   const { id } = useParams();
   const location = useLocation();
 
-  console.log(location);
-  console.log(location.state);
   const [data, setData] = useState('');
   const IMG_URL = 'https://image.tmdb.org/t/p/';
   useEffect(() => {
@@ -29,9 +28,11 @@ const MoviesDetails = () => {
   const { title, poster_path, release_date, vote_average, overview, genres } =
     data;
 
+  const pathLocation = useRef(location.state?.from ?? '/');
+
   return (
     <>
-      <Link to={location.state}>Go back</Link>
+      <Link to={pathLocation.current}>Go back</Link>
       <img src={poster_path ? `${IMG_URL}w342${poster_path}` : ''} alt=""></img>
       <h1>
         {title}({release_date && release_date.slice(0, 4)})
@@ -50,7 +51,9 @@ const MoviesDetails = () => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>is loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
