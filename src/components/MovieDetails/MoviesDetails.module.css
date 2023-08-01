@@ -48,6 +48,7 @@
 
 .box {
   flex: 2;
+  padding-top: 37px;
 }
 
 .image {
