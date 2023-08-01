@@ -2,8 +2,8 @@ import { lazy } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-
-const MovieItem = lazy(() => import('../components/MovieItem'));
+import css from './HomePage.module.css';
+const MovieItem = lazy(() => import('../../components/MoviesItem/MovieItem'));
 
 const HomePage = () => {
   const [results, setResults] = useState([]);
@@ -25,12 +25,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
-      <h1>Trending today</h1>
-      <ul>
+    <div className={css.container}>
+      <h1 className={css.title}>Trending today:</h1>
+      <ul className={css.list}>
         <MovieItem results={results} />
       </ul>
-    </>
+    </div>
   );
 };
 export default HomePage;

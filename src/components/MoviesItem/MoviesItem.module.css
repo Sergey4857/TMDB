@@ -1,0 +1,12 @@
+.item {
+  display: flex;
+  flex-basis: calc((100% - 40px) / 4);
+}
+.text {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: black;
+  color: #ffffff;
+}

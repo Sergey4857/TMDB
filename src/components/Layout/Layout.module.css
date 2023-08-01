@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  background-color: rgb(0, 0, 0);
+}
+.headerNav {
+  display: flex;
+
+  width: 1280px;
+  gap: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.headerList {
+  display: flex;
+  gap: 40px;
+}
+
+.Link {
+  color: #0bb5e0;
+}
+.main {
+  height: 100%;
+  padding-bottom: 60px;
+  background-image: url(../../cosmo.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}

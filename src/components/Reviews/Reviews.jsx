@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import css from './Reviews.module.css';
 const Reviews = () => {
   const [data, setData] = useState('');
 
@@ -23,16 +24,16 @@ const Reviews = () => {
 
   return (
     <>
-      <ul>
+      <ul className={css.list}>
         {data.length > 0 ? (
           data.map(({ id, author, content }) => (
-            <li key={id}>
-              <h2>{author}</h2>
-              <p>{content}</p>
+            <li className={css.item} key={id}>
+              <h2 className={css.author}>{author}</h2>
+              <p className={css.text}>{content}</p>
             </li>
           ))
         ) : (
-          <p>We don`t have any reviews for this movie</p>
+          <p className={css.alarm}>We don`t have any reviews for this movie</p>
         )}
       </ul>
     </>

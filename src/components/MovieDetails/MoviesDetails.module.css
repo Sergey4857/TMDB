@@ -1,0 +1,120 @@
+.wrap {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.back {
+  display: flex;
+  gap: 5px;
+
+  justify-content: space-between;
+  text-align: center;
+  max-width: 130px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+  padding: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
+}
+.back:hover {
+  color: #fca311;
+}
+
+.title {
+  color: #fff;
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container {
+  flex: 1;
+}
+
+.box {
+  flex: 2;
+}
+
+.image {
+  min-width: 310px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.score {
+  color: #fca311;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.owerviewTitle {
+  font-size: 24px;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.owerview {
+  font-size: 16px;
+  color: #fff;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.genresTitle {
+  font-size: 24px;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.genres {
+  font-size: 16px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.case {
+  margin-top: 40px;
+}
+
+.Info {
+  font-size: 24px;
+  color: #fff;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.item a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.item a:hover {
+  color: #fca311;
+}
