@@ -10,13 +10,7 @@ const MoviesItem = ({ results }) => {
     <>
       {results &&
         results.map(({ id, original_title, poster_path }) => (
-          <Link
-            key={id}
-            to={
-              location.pathname.includes('/movies/') ? `${id}` : `/movies/${id}`
-            }
-            state={{ from: location }}
-          >
+          <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
             <li className={css.item}>
               <img
                 className={css.picture}
@@ -35,5 +29,11 @@ const MoviesItem = ({ results }) => {
 export default MoviesItem;
 
 MoviesItem.propTypes = {
-  results: PropTypes.array.isRequired,
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      original_title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
+    })
+  ).isRequired,
 };

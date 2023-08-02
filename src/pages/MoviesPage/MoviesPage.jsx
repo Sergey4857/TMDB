@@ -56,7 +56,7 @@ const MoviesPage = () => {
           Search
         </button>
       </form>
-      {results && (
+      {results.length > 0 && (
         <MoviesList>
           <MoviesItem results={results} />
         </MoviesList>
