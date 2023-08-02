@@ -6,7 +6,7 @@ import css from './HomePage.module.css';
 import MoviesList from 'components/MovieList/MoviesList';
 import Spinner from 'Spinner/Spinner';
 
-const MovieItem = lazy(() => import('../../components/MoviesItem/MovieItem'));
+const MoviesItem = lazy(() => import('../../components/MoviesItem/MoviesItem'));
 
 const HomePage = () => {
   const [results, setResults] = useState([]);
@@ -22,10 +22,12 @@ const HomePage = () => {
       {isLoading && <Spinner />}
       {error && <p>Oops..Somesing went wrong...</p>}
       <div className={css.container}>
-        <h1 className={css.title}>Trending today:</h1>
-        <MoviesList>
-          <MovieItem results={results} />
-        </MoviesList>
+        <h1 className={css.title}>Trending today:</h1>_
+        {results.length > 0 && (
+          <MoviesList>
+            <MoviesItem results={results} />
+          </MoviesList>
+        )}
       </div>
     </>
   );

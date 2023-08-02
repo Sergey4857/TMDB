@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom';
 import defaultImage from '../../defaultImage.jpg';
-import css from './MoviesItemHome.module.css';
+import css from './MoviesItem.module.css';
 import PropTypes from 'prop-types';
-
-const MoviesItemHome = ({ results, location }) => {
+import { useLocation } from 'react-router-dom';
+const MoviesItem = ({ results }) => {
   const IMG_URL = 'https://image.tmdb.org/t/p/';
-
+  const location = useLocation();
   return (
     <>
       {results &&
         results.map(({ id, original_title, poster_path }) => (
-          <Link key={id} to={`${id}`} state={{ from: location }}>
+          <Link
+            key={id}
+            to={
+              location.pathname.includes('/movies/') ? `${id}` : `/movies/${id}`
+            }
+            state={{ from: location }}
+          >
             <li className={css.item}>
               <img
                 className={css.picture}
@@ -26,9 +32,8 @@ const MoviesItemHome = ({ results, location }) => {
     </>
   );
 };
-export default MoviesItemHome;
+export default MoviesItem;
 
-MoviesItemHome.propTypes = {
-  results: PropTypes.array,
-  location: PropTypes.object.isRequired,
+MoviesItem.propTypes = {
+  results: PropTypes.array.isRequired,
 };

@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import css from './MoviesPage.module.css';
 import FetchByQuery from 'Api/FetchByQuery';
 import MoviesList from 'components/MovieList/MoviesList';
-import MoviesItemHome from 'components/MoviesItemHome/MoviesItemHome';
+import MoviesItem from 'components/MoviesItem/MoviesItem';
 import Spinner from 'Spinner/Spinner';
 const MoviesPage = () => {
   const [input, setInput] = useState('');
@@ -14,7 +13,6 @@ const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const location = useLocation();
 
   function onHandleChange(e) {
     setInput(e.currentTarget.value);
@@ -58,9 +56,11 @@ const MoviesPage = () => {
           Search
         </button>
       </form>
-      <MoviesList>
-        <MoviesItemHome results={results} location={location} />
-      </MoviesList>
+      {results && (
+        <MoviesList>
+          <MoviesItem results={results} />
+        </MoviesList>
+      )}
     </>
   );
 };
