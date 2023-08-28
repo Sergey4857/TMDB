@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import FetchCastById from 'Api/FetchCastById';
 import defaultImage from '../../defaultImage.jpg';
-import css from './Cast.module.css';
+import css from '../Cast/Cast.module.css';
 import Spinner from 'Spinner/Spinner';
 import { useParams } from 'react-router-dom';
 const Cast = () => {
