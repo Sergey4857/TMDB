@@ -1,14 +1,22 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 import css from './Reviews.module.css';
 import FetchReviewsById from 'Api/FetchReviewsById';
 import Spinner from 'Spinner/Spinner';
-const Reviews = () => {
-  const [data, setData] = useState('');
+
+type Data = {
+  id: string;
+  author: string;
+  content: string;
+};
+
+const Reviews: FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     FetchReviewsById(setData, id, setIsLoading, setError);

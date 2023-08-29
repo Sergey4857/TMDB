@@ -1,10 +1,10 @@
-import { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import css from './Layout.module.css';
 import logo from '../../logo.svg';
 import Spinner from 'Spinner/Spinner';
 
-const Layout = () => {
+const Layout: FC = () => {
   return (
     <>
       <header className={css.header}>

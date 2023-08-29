@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Blocks } from 'react-loader-spinner';
 
-const Spinner = () => (
+const Spinner: FC = () => (
   <div
     style={{
       display: 'flex',

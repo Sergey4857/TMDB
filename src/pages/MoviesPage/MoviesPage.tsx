@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './MoviesPage.module.css';
@@ -7,18 +7,19 @@ import FetchByQuery from 'Api/FetchByQuery';
 import MoviesList from 'components/MovieList/MoviesList';
 import MoviesItem from 'components/MoviesItem/MoviesItem';
 import Spinner from 'Spinner/Spinner';
-const MoviesPage = () => {
+
+const MoviesPage: FC = () => {
   const [input, setInput] = useState('');
   const [results, setResults] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  function onHandleChange(e) {
+  function onHandleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.currentTarget.value);
   }
 
-  function onSubmit(e) {
+  function onSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (input === '') {
       return toast.success('Enter the name of the film');

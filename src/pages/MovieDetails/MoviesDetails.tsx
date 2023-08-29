@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 
@@ -7,21 +7,38 @@ import FetchMovieById from 'Api/FetchMovieById';
 import { BsFilm } from 'react-icons/bs';
 import css from './MoviesDetails.module.css';
 import Spinner from 'Spinner/Spinner';
-const MoviesDetails = () => {
-  const { id } = useParams();
+
+const MoviesDetails: FC = () => {
+  interface MovieData {
+    title: string;
+    poster_path: string | null;
+    release_date: string | null;
+    vote_average: number | null;
+    overview: string | null;
+    genres: Genres[];
+  }
+
+  interface Genres {
+    name: string;
+  }
+
+  const { id } = useParams<{ id: string }>();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [data, setData] = useState('');
+
+  const [data, setData] = useState<MovieData | null>(null);
+
   const IMG_URL = 'https://image.tmdb.org/t/p/';
+
   useEffect(() => {
     FetchMovieById(setData, id, setError, setIsLoading);
   }, [id]);
 
   const { title, poster_path, release_date, vote_average, overview, genres } =
-    data;
+    data || {};
 
-  const pathLocation = useRef(location.state?.from ?? '/');
+  const pathLocation = useRef<string>(location.state?.from ?? '/');
 
   return (
     <>

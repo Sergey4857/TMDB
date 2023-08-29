@@ -1,9 +1,20 @@
 import { Link } from 'react-router-dom';
 import defaultImage from '../../defaultImage.jpg';
 import css from './MoviesItem.module.css';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
-const MoviesItem = ({ results }) => {
+import { FC } from 'react';
+
+interface MovieItemProps {
+  results: Data[];
+}
+
+export interface Data {
+  id: string;
+  original_title: string;
+  poster_path: string | null;
+}
+
+const MoviesItem: FC<MovieItemProps> = ({ results }) => {
   const IMG_URL = 'https://image.tmdb.org/t/p/';
   const location = useLocation();
   return (
@@ -27,13 +38,3 @@ const MoviesItem = ({ results }) => {
   );
 };
 export default MoviesItem;
-
-MoviesItem.propTypes = {
-  results: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      original_title: PropTypes.string.isRequired,
-      poster_path: PropTypes.string,
-    })
-  ).isRequired,
-};

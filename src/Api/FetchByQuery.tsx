@@ -2,10 +2,10 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const FetchByQuery = async (
-  searchParams,
-  setResults,
-  setIsLoading,
-  setError
+  searchParams: URLSearchParams,
+  setResults: React.Dispatch<React.SetStateAction<any>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setError: React.Dispatch<React.SetStateAction<any>>
 ) => {
   try {
     const query = searchParams.get('query');
