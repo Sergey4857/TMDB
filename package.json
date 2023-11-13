@@ -2,7 +2,7 @@
   "name": "TMDB",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Sergey4857.github.io/TMDB/",
+  "homepage": "https://github.com/Sergey4857/TMDB",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
